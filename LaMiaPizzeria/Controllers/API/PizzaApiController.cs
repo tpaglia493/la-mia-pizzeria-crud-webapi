@@ -19,5 +19,25 @@ namespace LaMiaPizzeria.Controllers.API
             }
 
         }
+
+
+        //TO TEST
+        [HttpPost]
+        public IActionResult PostPizza([FromBody] PizzaModel pizza)
+        {
+            using (PizzaContext db = new())
+            {
+                if (!ModelState.IsValid)
+                {
+                    return BadRequest(ModelState);
+                }
+                else
+                {
+                    db.Pizze.Add(pizza);
+                    db.SaveChanges();
+                    return Ok();
+                }
+            }
+        }
     }
 }
