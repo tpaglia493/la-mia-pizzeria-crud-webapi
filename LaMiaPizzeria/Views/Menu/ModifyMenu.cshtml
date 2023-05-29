@@ -1,0 +1,75 @@
+﻿@using LaMiaPizzeria.Models.ModelForViews
+@model List<PizzaModel_ListPizzaCategory>
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-12">
+            <h3>Lista degli articoli</h3>
+        </div>
+    </div>
+    <div class="row my-3">
+        <div class="col-12">
+
+            <table class="table table-striped table-light">
+                <thead>
+                    <tr>
+                        <th class="col" scope="col">id</th>
+                        <th class="col-1" scope="col">Immagine</th>
+                        <th class="col-2" scope="col">Nome</th>
+                        <th class="col-1" scope="col">Categoria</th>
+                        <th class="col-6" scope="col">Descrizione</th>
+                        <th class="col-1" scope="col">Prezzo</th>
+                        <th class="col" scope="col">Azioni</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (PizzaModel_ListPizzaCategory dataModel in Model)
+                    {
+                      
+                        <tr>
+                            <th scope="row">@dataModel.Pizza.Id</th>
+                            <td><img class="img-fluid img_square" width="100" height="100" src="@dataModel.Pizza.ImgSource" alt="Immagine @dataModel.Pizza.Name"></td>
+                            <td>@dataModel.Pizza.Name</td>
+                            <td>@dataModel.Pizza.Category.Name</td>
+                            <td>@dataModel.Pizza.Description</td>
+                            <td>@dataModel.Pizza.Price.ToString("n2") €</td>
+                            <td>
+                                <a class="btn btn-sm" href="@Url.Action("UpdatePizza", "Menu", new { id = dataModel.Pizza.Id })">
+                                    <span class="material-icons-outlined">
+                                        edit
+                                    </span>
+                                </a>
+                                <form asp-controller="Menu" asp-action="DeletePizza" asp-route-id="@dataModel.Pizza.Id" method="post" class="d-inline">
+                                    @Html.AntiForgeryToken()
+                                    <button type="submit" class="btn btn-sm ">
+                                        <span class="material-icons-outlined">
+                                            delete
+                                        </span>
+                                    </button>
+                            </form>
+                                
+                            </td>
+                        </tr>
+                      
+                    }
+                    <tr>
+                        <td></td>
+                        <td>
+                            <a href="@Url.Action("AddNewPizza", "Menu")">
+                            <img src="https://cdn.onlinewebfonts.com/svg/img_105471.png" width="100" height="100"  alt="Add new pizza button" />
+                            </a>
+                        </td>
+                        <td class="align-middle"> Aggiungi una Pizza</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        
+                    </tr>
+                </tbody>
+            </table>
+            
+        </div>
+    </div>
+</div>
+<div class="row">

@@ -1,0 +1,63 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+
+.bg-none{
+    background-color: none;
+}
+
+.bg-elegant {
+    background-color: #8c1f1e;
+}
+
+.bg-contrast {
+    background-color: #F4ECCC;
+}
+
+.bg-black {
+    background-color: #0D0D0D;
+}
+
+.text-contrast {
+    color: #F4ECCC;
+}
+
+.bg-whitey {
+    background-color: #FFF9F4;
+}
+
+.text-elegant {
+    color: #8c1f1e;
+}
+
+.text-white {
+    color: white;
+}
+
+.no-padding {
+    padding: 0;
+}
+
+span.size-48 {
+    font-size: 48px;
+}
+
+a:hover h1{
+    color: #F4ECCC !important;
+}
+
+.bg-crowns{
+    background-image:url(../img/CoroneBackground.jpg);
+    background-size: cover;
+    
+}
+
+.bg-rich{
+    background-image:url(../img/richBG.jpg);
+      background-size: cover;
+}
+
