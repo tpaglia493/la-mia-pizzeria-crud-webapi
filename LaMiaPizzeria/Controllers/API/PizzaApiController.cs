@@ -77,5 +77,25 @@ namespace LaMiaPizzeria.Controllers.API
                 }
             }
         }
+
+        //DELETE A PIZZA BY ID
+        [HttpDelete]
+        public IActionResult DeletePizza(int id)
+        {
+            using (PizzaContext db = new())
+            {
+                PizzaModel? pizzaToDelete = db.Pizze.Where(pizza => pizza.Id == id).FirstOrDefault();
+                if (pizzaToDelete != null)
+                {
+                    db.Pizze.Remove(pizzaToDelete);
+                    db.SaveChanges();
+                    return Ok();
+                }
+                else
+                {
+                    return NotFound();
+                }
+            }
+        }
     }
 }
