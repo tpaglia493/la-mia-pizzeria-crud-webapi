@@ -38,9 +38,27 @@ namespace LaMiaPizzeria.Controllers.API
             }
 
         }
-
-
         //TO TEST
+
+        [HttpGet("{keyWord}")]
+        public IActionResult GetPizzasByKeyword(string keyWord)
+        {
+            using (PizzaContext db = new())
+            {
+                List<PizzaModel> pizzasByKeyword = db.Pizze.Where(pizza => pizza.Name.Contains(keyWord)).ToList();
+                if (pizzasByKeyword != null)
+                {
+                    return Ok(pizzasByKeyword);
+                }
+                else
+                {
+                    return NotFound();
+                }
+            }
+        }
+
+
+
         [HttpPost]
         public IActionResult PostPizza([FromBody] PizzaModel pizza)
         {
