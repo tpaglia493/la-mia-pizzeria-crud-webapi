@@ -20,6 +20,25 @@ namespace LaMiaPizzeria.Controllers.API
 
         }
 
+        [HttpGet("{id}")]
+        public IActionResult GetPizzaById(int id)
+        {
+            using (PizzaContext db = new())
+            {
+                PizzaModel? pizzaToFind = db.Pizze.Where(pizza => pizza.Id == id).FirstOrDefault();
+                if (pizzaToFind != null)
+                {
+
+                    return Ok(pizzaToFind);
+                }
+                else
+                {
+                    return NotFound();
+                }
+            }
+
+        }
+
 
         //TO TEST
         [HttpPost]
