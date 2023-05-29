@@ -20,7 +20,7 @@ namespace LaMiaPizzeria.Controllers.API
 
         }
 
-        //GET PIZZA BY ID
+        //GET PIZZA BY ID (pass ID by URL)
         [HttpGet("{id}")]
         public IActionResult GetPizzaById(int id)
         {
@@ -40,7 +40,7 @@ namespace LaMiaPizzeria.Controllers.API
 
         }
 
-        //GET PIZZAS BY KEYWORD
+        //GET PIZZAS BY KEYWORD (pass keyword by URL)
         [HttpGet("{keyWord}")]
         public IActionResult GetPizzasByKeyword(string keyWord)
         {
@@ -78,7 +78,7 @@ namespace LaMiaPizzeria.Controllers.API
             }
         }
 
-        //DELETE A PIZZA BY ID
+        //DELETE A PIZZA BY ID (pass ID by query parameters)
         [HttpDelete]
         public IActionResult DeletePizza(int id)
         {
@@ -94,6 +94,27 @@ namespace LaMiaPizzeria.Controllers.API
                 else
                 {
                     return NotFound();
+                }
+            }
+        }
+
+        //UPDATE A PIZZA BY ID (pass ID by query parameters)
+        [HttpPut]
+        public IActionResult UpdatePizza(int id, [FromBody] PizzaModel updatedPizza)
+        {
+            using (PizzaContext db = new())
+            {
+                PizzaModel? pizzaToUpdate = db.Pizze.Where(pizza => pizza.Id == id).FirstOrDefault();
+                if (pizzaToUpdate == null)
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    pizzaToUpdate.Name = updatedPizza.Name;
+                    pizzaToUpdate.pizzaCategoryId = updatedPizza.pizzaCategoryId;
+
+
                 }
             }
         }
