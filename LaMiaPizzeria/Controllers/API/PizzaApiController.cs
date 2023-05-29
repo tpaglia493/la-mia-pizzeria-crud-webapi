@@ -8,7 +8,7 @@ namespace LaMiaPizzeria.Controllers.API
     [ApiController]
     public class PizzaApiController : ControllerBase
     {
-
+        //GET ALL PIZZAS FROM DB
         [HttpGet]
         public IActionResult GetPizzas()
         {
@@ -20,6 +20,7 @@ namespace LaMiaPizzeria.Controllers.API
 
         }
 
+        //GET PIZZA BY ID
         [HttpGet("{id}")]
         public IActionResult GetPizzaById(int id)
         {
@@ -38,8 +39,8 @@ namespace LaMiaPizzeria.Controllers.API
             }
 
         }
-        //TO TEST
 
+        //GET PIZZAS BY KEYWORD
         [HttpGet("{keyWord}")]
         public IActionResult GetPizzasByKeyword(string keyWord)
         {
@@ -58,7 +59,7 @@ namespace LaMiaPizzeria.Controllers.API
         }
 
 
-
+        //POST A NEW PIZZA IN DB
         [HttpPost]
         public IActionResult PostPizza([FromBody] PizzaModel pizza)
         {
