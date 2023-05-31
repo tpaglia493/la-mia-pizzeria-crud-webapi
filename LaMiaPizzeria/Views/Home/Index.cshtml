@@ -1,7 +1,10 @@
 ﻿
 @model List<PizzaModel>
+
+<!--SEZIONE CON CAROSELLO E SFONDO CON LETTERE
+    TODO: RIEMPIRE IL DIV.bg-rich CON DEL TESTO
+-->
 <div class="container-fluid bg-elegant">
- 
     <div class="row bg-rich">
         <div class="col-md-6 no-padding">
 
@@ -27,6 +30,8 @@
     </div>
 </div>
 
+
+<!--SEZIONE PRINCIPALE CON MISSION E INFO GENERALI-->
 <!--
 
 <div class="container">
@@ -73,6 +78,8 @@
 
             <h1>Prova GET tramite JavaScript</h1>
 
+            <div id="container_cards"></div>
+
         </div>
     </div>
 
@@ -81,6 +88,7 @@
 </div>
 
 
+<!--SEZIONE FINALE CON BACKGROUND CORONE-->
 <div class="container-fluid ">
     <div class="row bg-crowns no-padding" style="height:500px">
             
@@ -90,7 +98,47 @@
 
 
 
- 
+@section Scripts{
+
+    axios.get("https://localhost:7283//api/PizzaApi/GetPizzas")
+    .then((result) =>{
+        const listPizzas = result.data;
+        listPizzas.forEach(pizza => {
+                        document.getElementById("container_cards").innerHTML += `
+    <tr>
+        <th scope="row">${pizza.id}</th>
+        <td><img class="img-fluid img_square" width="100" height="100" src="${pizza.imgSource}" alt="Immagine ${pizza.name}"></td>
+        <td>${pizza.name}</td>
+        <td>${pizza.description}</td>
+        <td>${pizza.price} €</td>
+        <td>
+            <a class="btn btn-sm" href="/Home/PizzaDetail">
+                <span class="material-icons-outlined">
+                    visibility
+                </span>
+            </a>
+        </td>
+    </tr>`;}
+    
+    
+
+
+
+
+
+
+
+    
+    })
+    .catch((error) => {
+		console.error("Errore!");
+		console.log(error);
+	)};
+}
+
+
+
+
 
 
 
