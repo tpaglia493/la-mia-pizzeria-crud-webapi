@@ -78,7 +78,26 @@
 
             <h1>Prova GET tramite JavaScript</h1>
 
-            <div id="container_cards"></div>
+            <div>
+                <table class="table table-striped table-light">
+                    <thead>
+                        <tr>
+                            <th class="col" scope="col">id</th>
+                            <th class="col-1" scope="col">Immagine</th>
+                            <th class="col-2" scope="col">Nome</th>
+              
+                            <th class="col-6" scope="col">Descrizione</th>
+                            <th class="col-1" scope="col">Prezzo</th>
+                            <th class="col" scope="col">Azioni</th>
+                        </tr>
+                    </thead>
+                    <tbody id="container_cards">
+
+
+
+                    </tbody>
+                </table>
+            </div>
 
         </div>
     </div>
@@ -100,40 +119,32 @@
 
 @section Scripts{
 
-    axios.get("https://localhost:7283//api/PizzaApi/GetPizzas")
-    .then((result) =>{
-        const listPizzas = result.data;
-        listPizzas.forEach(pizza => {
-                        document.getElementById("container_cards").innerHTML += `
+        axios.get("https://localhost:7283/api/PizzaApi/GetPizzas")
+        .then((result) =>{
+            const listPizzas = result.data;
+            listPizzas.forEach(pizza => {
+                            document.getElementById("container_cards").innerHTML += `
     <tr>
         <th scope="row">${pizza.id}</th>
-        <td><img class="img-fluid img_square" width="100" height="100" src="${pizza.imgSource}" alt="Immagine ${pizza.name}"></td>
+        <td><img class="img-fluid img_square" width="100" height="100" src=${pizza.imgSource} alt="Immagine Pizza"></td>
         <td>${pizza.name}</td>
         <td>${pizza.description}</td>
         <td>${pizza.price} €</td>
         <td>
-            <a class="btn btn-sm" href="/Home/PizzaDetail">
+            <a class="btn btn-sm" href="/Home/Detail/${pizza.id}">
                 <span class="material-icons-outlined">
                     visibility
                 </span>
             </a>
         </td>
-    </tr>`;}
-    
-    
+    </tr>`
 
-
-
-
-
-
-
-    
-    })
+        })}
+        )
     .catch((error) => {
 		console.error("Errore!");
 		console.log(error);
-	)};
+	});
 }
 
 

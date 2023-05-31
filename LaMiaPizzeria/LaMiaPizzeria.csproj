@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Remove="Views\Home\PizzaDetail.cshtml" />
+    <Content Remove="Views\Home\Detail.cshtml" />
   </ItemGroup>
 
   <ItemGroup>
@@ -22,15 +22,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <UpToDateCheckInput Remove="Views\Home\PizzaDetail.cshtml" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <_ContentIncludedByDefault Remove="Views\Home\PizzaDetail.cshtml" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="Views\Home\PizzaDetail.cshtml" />
+    <None Include="Views\Home\Detail.cshtml" />
   </ItemGroup>
 
 </Project>
