@@ -113,7 +113,10 @@ namespace LaMiaPizzeria.Controllers.API
                 {
                     pizzaToUpdate.Name = updatedPizza.Name;
                     pizzaToUpdate.pizzaCategoryId = updatedPizza.pizzaCategoryId;
-
+                    pizzaToUpdate.Description = updatedPizza.Description;
+                    pizzaToUpdate.Price = updatedPizza.Price;
+                    db.SaveChanges();
+                    return Ok();
 
                 }
             }
